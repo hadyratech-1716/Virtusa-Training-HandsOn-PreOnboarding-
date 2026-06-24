@@ -3,48 +3,58 @@ import java.util.Scanner;
 public class PasswordValidator
 {
     public static boolean validatePassword(String password)
+{
+    boolean hasUppercase = false;
+    boolean hasLowercase = false;
+    boolean hasNumber = false;
+    boolean hasSpecial = false;
+
+    if (password.length() < 8)
     {
-        boolean hasUppercase = false;
-        boolean hasLowercase = false;
-        boolean hasNumber = false;
-        boolean hasSpecial = false;
-
-        if (password.length() < 8)
-
-        {
-            System.out.println("Password too short(Minimum 8 characters)");
-        }
-
-        for (int i = 0; i < password.length(); i++) {
-            char ch = password.charAt(i);
-
-            if (Character.isUpperCase(ch)) {
-                hasUppercase = true;
-            } else if (Character.isLowerCase(ch)) {
-                hasLowercase = true;
-            } else if (Character.isDigit(ch)) {
-                hasNumber = true;
-            } else {
-                hasSpecial = true;
-            }
-        }
-        
-
-        if(!hasUppercase){
-            System.out.println("Missing uppercase characters");
-        }
-        if(!hasLowercase){
-            System.out.println("Missing lowercase characters");
-        }
-        if(!hasNumber){
-            System.out.println("Missing numbers");
-        }
-        if(!hasSpecial){
-            System.out.println("PMissing special characters");
-        }   
-
-        return password.length()>=8 && hasUppercase && hasNumber;
+        System.out.println("Password too short (Minimum 8 characters)");
+        return false;
     }
+
+    for (int i = 0; i < password.length(); i++)
+    {
+        char ch = password.charAt(i);
+
+        if (Character.isUpperCase(ch))
+        {
+            hasUppercase = true;
+        }
+        else if (Character.isLowerCase(ch))
+        {
+            hasLowercase = true;
+        }
+        else if (Character.isDigit(ch))
+        {
+            hasNumber = true;
+        }
+        else
+        {
+            hasSpecial = true;
+        }
+    }
+
+    if (!hasUppercase)
+        System.out.println("Missing uppercase character");
+
+    if (!hasLowercase)
+        System.out.println("Missing lowercase character");
+
+    if (!hasNumber)
+        System.out.println("Missing number");
+
+    if (!hasSpecial)
+        System.out.println("Missing special character");
+
+    return hasUppercase &&
+           hasLowercase &&
+           hasNumber &&
+           hasSpecial;
+}
+
 
 
 
